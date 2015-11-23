@@ -1,4 +1,4 @@
-# Navigator Panel package
+# Navigation Panel
 
 Navigate using bookmarks and symbols. Whenever you open a file, it is scanned
 for symbols and to dos, and a navigation panel is displayed to the right.
