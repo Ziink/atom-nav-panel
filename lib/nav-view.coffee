@@ -52,6 +52,7 @@ class NavView extends ResizableWidthView
       editor = atom.workspace.getActiveTextEditor()
       return unless editor
       file = editor.getPath()
+      @state[file] ||= {}
       if @state[file].sort == undefined
         @state[file].sort = @settings.sort
       else
