@@ -17,9 +17,9 @@
   ],
   "license": "MIT",
   "repository" : {
-    "type" : "git"
-  , "url" : "https://github.com/Ziink/atom-nav-panel"
-  }
+    "type" : "git",
+    "url" : "https://github.com/Ziink/atom-nav-panel"
+  },
   "engines": {
     "atom": ">=1.2.0 <2.0.0"
   },
