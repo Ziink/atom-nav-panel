@@ -5,7 +5,7 @@ for symbols and to dos, and a navigation panel is displayed to the right.
 The panel is displayed only when there's something to show.
 It can be turned on and off on demand.
 
-![Scren Shot](screenshot/screenshot1.png)
+![Scren Shot](https://raw.githubusercontent.com/Ziink/atom-nav-panel/master/screenshot/screenshot1.png)
 
 Comes prepackaged with rules for various file types. They might be a little
 flaky though. You can create your own project specific rules or
