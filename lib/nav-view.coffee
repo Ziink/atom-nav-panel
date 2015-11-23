@@ -128,6 +128,7 @@ class NavView extends ResizableWidthView
 
 
   getPanelState: (panel)->
+    return unless panel
     state = {collapsedGroups: [], bookmarks: [], highlights: {}}
     file = panel.data('file')
     editor = @getFileEditor(file)
