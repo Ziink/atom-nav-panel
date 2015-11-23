@@ -1,7 +1,7 @@
 {
   "name": "nav-panel",
   "main": "./lib/nav-panel",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Side panel with automatic, configurable markers for easy navigation with support for persistent bookmarks.",
   "keywords": [
     "anchors",
