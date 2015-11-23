@@ -1,0 +1,27 @@
+{
+  "name": "nav-panel",
+  "main": "./lib/nav-panel",
+  "version": "1.0.0",
+  "description": "Side panel with automatic, configurable markers for easy navigation",
+  "keywords": [
+    "anchors",
+    "bookmark",
+    "bookmarks",
+    "todo",
+    "todos",
+    "outline",
+    "navigation",
+    "functions",
+    "methods",
+    "markers"
+  ],
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.2.0 <2.0.0"
+  },
+  "dependencies": {
+    "jquery": "^2.1.4"
+  },
+  "devDependencies": {
+  }
+}

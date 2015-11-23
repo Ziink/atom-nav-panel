@@ -1,0 +1,22 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'context-menu':
+  'atom-text-editor': [
+    {
+      'label': 'Toggle Nav Panel'
+      'command': 'nav-panel:toggle'
+    }
+  ]
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'nav-panel'
+      'submenu': [
+        {
+          'label': 'Toggle'
+          'command': 'nav-panel:toggle'
+        }
+      ]
+    ]
+  }
+]

@@ -1,0 +1,73 @@
+// The ui-variables file is provided by base themes provided by Atom.
+//
+// See https://github.com/atom/atom-dark-ui/blob/master/styles/ui-variables.less
+// for a full listing of what's available.
+@import "ui-variables";
+
+.zi-marker-panel {
+	width: 200px;
+  min-width: 100px;
+  max-width: 800px;
+	height: 100%;
+  white-space: nowrap;
+	overflow-y: scroll;
+}
+.zi-marker-panel .list-item {
+	padding: 5px 10px;
+	font-size: 14px;
+	cursor: pointer;
+}
+.zi-marker-panel .list-item .icon:before {
+  font-size: 10px;
+  width: 6px;
+}
+.zi-marker-panel .list-item .icon:hover:before {
+  color: orange;
+  text-shadow: 0px 0px 8px red;
+}
+.zi-marker-panel .list-item.zi-highlight .icon:hover:before {
+  color: black;
+  text-shadow: 0px 0px 8px gray;
+}
+.zi-marker-panel .list-item:hover {
+	background-color: @background-color-highlight
+}
+.zi-marker-group-label>span {
+	font-size: 14px;
+	font-weight: bold;
+	// border-bottom: 1px solid @background-color-highlight
+}
+.zi-marker-panel .zi-highlight>span {
+  color: orange;
+}
+atom-text-editor div.line-number.zi-highlight,
+atom-text-editor::shadow div.line-number.zi-highlight {
+  background-color: orange;
+}
+.zi-resizable {
+  position: relative;
+}
+.zi-width-resizer {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 6px;
+	cursor: col-resize;
+	z-index: 5;
+}
+.zi-header>h2 {
+  margin-left: 10px;
+}
+.zi-header>.icon {
+  float: right;
+  width: 18px;
+  padding-left: 2px;
+  border: gray solid 2px;
+  border-width: 1px 2px 3px 2px;
+  position: relative;
+  top: -4px;
+  margin-right: 4px;
+}
+.zi-header>.icon.toggled {
+  border-width: 3px 2px 1px 2px;
+}
