@@ -21,7 +21,7 @@ class NavParser
 
   constructor: ->
     @getProjectRules atom.project.getPaths()
-    pathObserver = atom.project.onDidChangePaths (paths)->
+    pathObserver = atom.project.onDidChangePaths (paths)=>
       @getProjectRules paths
 
 
@@ -51,6 +51,7 @@ class NavParser
     editor = atom.workspace.getActiveTextEditor()
     return items unless editor
     editorFile = editor.getPath()
+    return unless editorFile  # happens with new file
 
     activeRules = langdef.All || []
     markerIndents = []    # indent chars to track parent/children
