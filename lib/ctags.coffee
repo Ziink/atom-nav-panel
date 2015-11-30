@@ -122,6 +122,7 @@ langdef =
   ]
 langmap = 
   '.coffee': langdef.CoffeeScript
+  '.litcoffee': langdef.CoffeeScript
   '.rb': langdef.Ruby
   'Rakefile': langdef.Ruby
   '.php': langdef.php

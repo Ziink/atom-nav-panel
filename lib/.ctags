@@ -6,6 +6,7 @@
 
 --langdef=CoffeeScript
 --langmap=CoffeeScript:.coffee
+--langmap=CoffeeScript:.litcoffee
 --regex-CoffeeScript=/^[ \t]*class[ \t]*([a-zA-Z$_\.0-9]+)(?:[ \t]|$)/\1/c,class/
 --regex-CoffeeScript=/^[ \t]*(@?[a-zA-Z$_\.0-9]+)[ \t]*(?:=|\:)[ \t]*(\(.*\))?[ \t]*(?:-|=)>/\1/f,Function/
 --regex-CoffeeScript=/^[ \t]*([a-zA-Z$_0-9]+\:\:[a-zA-Z$_\.0-9]+)[ \t]*(=|\:)[ \t]*(\(.*\))?[ \t]*(-|=)>/\1/f,Function/
