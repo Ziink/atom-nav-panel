@@ -61,27 +61,27 @@ langdef =
     {re: /const[ \t]+([A-Za-z]+)/, id: '%1', kind: 'Const'}
   ]
   perl: [
-    {re: /with[ \t]+([^;]+)[ \t]*?;/, id: '%1', kind: 'Roles'}
+    {re: /with[ \t]+([^;]+)[ \t]*?;/, id: '%1', kind: 'Role'}
     {re: /extends[ \t]+['"]([^'"]+)['"][ \t]*?;/, id: '%1', kind: 'Extends'}
     {re: /use[ \t]+base[ \t]+['"]([^'"]+)['"][ \t]*?;/, id: '%1', kind: 'Extends'}
     {re: /use[ \t]+parent[ \t]+['"]([^'"]+)['"][ \t]*?;/, id: '%1', kind: 'Extends'}
     {re: /Mojo::Base[ \t]+['"]([^'"]+)['"][ \t]*?;/, id: '%1', kind: 'Extends'}
-    {re: /^[ \t]*?use[ \t]+([^;]+)[ \t]*?;/, id: '%1', kind: 'Uses'}
-    {re: /^[ \t]*?require[ \t]+((\w|\:)+)/, id: '%1', kind: 'Requires'}
-    {re: /^[ \t]*?has[ \t]+['"]?(\w+)['"]?/, id: '%1', kind: 'Attributes'}
-    {re: /^[ \t]*?\*(\w+)[ \t]*?=/, id: '%1', kind: 'Aliases'}
-    {re: /->helper\([ \t]?['"]?(\w+)['"]?/, id: '%1', kind: 'Helpers'}
-    {re: /^[ \t]*?our[ \t]*?[\$@%](\w+)/, id: '%1', kind: 'Ours'}
-    {re: /^\=head1[ \t]+(.+)/, id: '%1', kind: 'Plain Old Documentation'}
-    {re: /^\=head2[ \t]+(.+)/, id: '-- %1', kind: 'Plain Old Documentation'}
-    {re: /^\=head[3-5][ \t]+(.+)/, id: '---- %1', kind: 'Plain Old Documentation'}
+    {re: /^[ \t]*?use[ \t]+([^;]+)[ \t]*?;/, id: '%1', kind: 'Use'}
+    {re: /^[ \t]*?require[ \t]+((\w|\:)+)/, id: '%1', kind: 'Require'}
+    {re: /^[ \t]*?has[ \t]+['"]?(\w+)['"]?/, id: '%1', kind: 'Attribute'}
+    {re: /^[ \t]*?\*(\w+)[ \t]*?=/, id: '%1', kind: 'Alias'}
+    {re: /->helper\([ \t]?['"]?(\w+)['"]?/, id: '%1', kind: 'Helper'}
+    {re: /^[ \t]*?our[ \t]*?[\$@%](\w+)/, id: '%1', kind: 'Our'}
+    {re: /^\=head1[ \t]+(.+)/, id: '%1', kind: 'Plain Old Doc'}
+    {re: /^\=head2[ \t]+(.+)/, id: '-- %1', kind: 'Plain Old Doc'}
+    {re: /^\=head[3-5][ \t]+(.+)/, id: '---- %1', kind: 'Plain Old Doc'}
   ]
   JavaScript: [
-    {re: /(,|(;|^)[ \t]*(var|let|([A-Za-z_$][A-Za-z0-9_$.]*\.)*))[ \t]*([A-Za-z0-9_$]+)[ \t]*=[ \t]*function[ \t]*\(/, id: '%5', kind: ',function'}
-    {re: /function[ \t]+([A-Za-z0-9_$]+)[ \t]*\([^)]*\)/, id: '%1', kind: ',function'}
-    {re: /(,|^|\*\/)[ \t]*([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*:[ \t]*function[ \t]*\(/, id: '%2', kind: ',function'}
-    {re: /(,|^|\*\/)[ \t]*get[ \t]+([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*\([ \t]*\)[ \t]*\{/, id: 'get %2', kind: ',function'}
-    {re: /(,|^|\*\/)[ \t]*set[ \t]+([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*\([ \t]*([A-Za-z_$][A-Za-z0-9_$]+)?[ \t]*\)[ \t]*\{/, id: 'set %2', kind: ',function'}
+    {re: /(,|(;|^)[ \t]*(var|let|([A-Za-z_$][A-Za-z0-9_$.]*\.)*))[ \t]*([A-Za-z0-9_$]+)[ \t]*=[ \t]*function[ \t]*\(/, id: '%5', kind: 'Function'}
+    {re: /function[ \t]+([A-Za-z0-9_$]+)[ \t]*\([^)]*\)/, id: '%1', kind: 'Function'}
+    {re: /(,|^|\*\/)[ \t]*([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*:[ \t]*function[ \t]*\(/, id: '%2', kind: 'Function'}
+    {re: /(,|^|\*\/)[ \t]*get[ \t]+([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*\([ \t]*\)[ \t]*\{/, id: 'get %2', kind: 'Function'}
+    {re: /(,|^|\*\/)[ \t]*set[ \t]+([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*\([ \t]*([A-Za-z_$][A-Za-z0-9_$]+)?[ \t]*\)[ \t]*\{/, id: 'set %2', kind: 'Function'}
   ]
   haxe: [
     {re: /^package[ \t]+([A-Za-z0-9_.]+)/, id: '%1', kind: 'Package'}
