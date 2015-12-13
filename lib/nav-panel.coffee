@@ -61,7 +61,7 @@ module.exports =
       editor = atom.workspace.getActiveTextEditor()
       return @navView.hide() unless editor
       return if editor != paneItem
-      editorFile = editor.getPath()
+      editorFile = editor.getPath() # undefined for new file
       @navView.setFile(editorFile)
       # Panel also needs to be updated when text saved
       return unless editor and editor.onDidSave
@@ -72,7 +72,8 @@ module.exports =
           # We want click to be handled first
           # setImmediate didn't work.
           setTimeout =>
-            @navView.updateFile(editorFile)
+            editorFile = editor.getPath()
+            @navView.updateFile(editorFile) if editorFile
           , 200
         @subscriptions.add editor.ziOnEditorSave
 

@@ -90,6 +90,7 @@ class NavView extends ResizableWidthView
 
 
   setFile: (file)->
+    return unless file
     newElem = @getFilePanel(file)
     #todo: If we have multiple panes this might give some odd results
     editor = @getFileEditor(file)
@@ -120,9 +121,10 @@ class NavView extends ResizableWidthView
   updateFile: (file)->
     editor = @getFileEditor(file)
     oldPanel = @getFilePanel(file)
-    prevState = @getPanelState(oldPanel)
-    @state[file] = prevState
-    @destroyPanel(oldPanel)
+    if oldPanel   # oldPanel is null when newly created file is saved
+      prevState = @getPanelState(oldPanel)
+      @state[file] = prevState
+      @destroyPanel(oldPanel)
     @populatePanel(editor)
     @setVisibility()
 
