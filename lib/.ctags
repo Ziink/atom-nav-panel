@@ -1,8 +1,8 @@
 # Most of this file is based on a .ctags file from the Atom project (used in one of the packages.)
 # Some of the regular expression is pretty bad
 # All applies to all files
---regex-All=/#nav-mark:(.*)/\1/m,Markers/i
---regex-All=/#todo:(.*)/\1/t,Todo/i
+--regex-All=/#[ \t]?nav-mark:(.*)/\1/m,Markers/i
+--regex-All=/#[ \t]?todo:(.*)/\1/t,Todo/i
 
 --langdef=CoffeeScript
 --langmap=CoffeeScript:.coffee
