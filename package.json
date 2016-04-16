@@ -18,7 +18,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Ziink/atom-nav-panel"
+    "url": "git+https://github.com/Ziink/atom-nav-panel.git"
   },
   "engines": {
     "atom": ">=1.2.0 <2.0.0"
@@ -26,5 +26,167 @@
   "dependencies": {
     "jquery": "^2.1.4"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "readme": "# Navigation Panel\n\nNavigate using bookmarks and symbols. Whenever you open a file, it is scanned\nfor symbols and to dos, and a navigation panel is displayed to the right.\nThe panel is displayed only when there's something to show.\nIt can be turned on and off on demand.\n\n![Scren Shot](https://raw.githubusercontent.com/Ziink/atom-nav-panel/master/screenshot/screenshot1.png)\n\nComes prepackaged with rules for various file types. They might be a little\nflaky though. You can create your own project specific rules or\ncustomize the rules within any given file. Your custom configuration can\nadd to the existing rules or replace them.\n\nBookmarks are saved across sessions.\n\n**alt-click** on gutter (where the line numbers show) to toggle the bookmark\n**right-click** on editor and select 'Toggle Nav Panel' to show/hide the panel.\n\nIn the navigation panel, click on the icon of an item to highlight it and\n the associated line of code. Click on the item to go to the associated\n line.\n\n\n### Project rules\nCreate a file '.nav-marker-rules' in your project's root directory to define your own rules.\n\nEach rule is on a single line. If a line does not match the format, it is ignored.\n\n0. The line should begin with '#marker-rule:' (without quotes)\n0. This is followed by at least one field from below. Different fields should be separated by **||** (two vertical bars)\n0. The regular expression pattern if needed should be next. This is matched against each line.\n0. Label for the item. Usually involves a captured group in the regular pattern and indicated with %n where n is an integer indicating the captured group. If this is absent, the entire match is used as the item label.\n0. Name of the kind of match sought by the regular expression. E.g. Function or Variable or whatever makes most sense. If absent, any item found is grouped under 'Markers'\n0. startOver: If this word (case matters) is a field, all previous rules are discarded\n0. ext=fileExt1,fileExt2 : This is not needed if the rule applies to the file it is in.\n0. disable=kind1,kind2 : Disables any rules of those kinds. E.g. 'Function' is a kind. These show up as main groups in the Nav Panel.\n\nExamples\n\n```\n#marker-rule: /#[ \\t]*urgent: (.*)/||Urgent||ext=.md\n#marker-rule: /function (\\w+)/||%1||Function\n#marker-rule: /function (\\w+)/i||%1||Function||startOver\n#marker-rule: disable=Variable\n```\n\n### Rules within a source file\nYou can also intersperse rules within a file.\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/Ziink/atom-nav-panel/issues"
+  },
+  "homepage": "https://github.com/Ziink/atom-nav-panel#readme",
+  "_id": "nav-panel@0.0.11",
+  "_shasum": "18df56444a1125d1917cc494935da1fb6bac492c",
+  "_resolved": "file:../d-116316-46088-fyj19j/package.tgz",
+  "_from": "../d-116316-46088-fyj19j/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [
+      {
+        "name": "jquery",
+        "version": "2.2.3",
+        "path": "node_modules/jquery/dist/jquery.js"
+      }
+    ],
+    "extensions": {
+      ".coffee": [
+        "lib/ctags.coffee",
+        "lib/ctags2coffee.coffee",
+        "lib/nav-panel.coffee",
+        "lib/nav-parser.coffee",
+        "lib/nav-view.coffee",
+        "lib/resizable-width-view.coffee"
+      ],
+      ".json": [
+        "node_modules/jquery/bower.json",
+        "node_modules/jquery/package.json",
+        "package.json"
+      ],
+      ".js": [
+        "node_modules/jquery/dist/jquery.js",
+        "node_modules/jquery/dist/jquery.min.js",
+        "node_modules/jquery/dist/jquery.slim.js",
+        "node_modules/jquery/dist/jquery.slim.min.js",
+        "node_modules/jquery/sizzle/dist/sizzle.js",
+        "node_modules/jquery/sizzle/dist/sizzle.min.js",
+        "node_modules/jquery/src/ajax/jsonp.js",
+        "node_modules/jquery/src/ajax/load.js",
+        "node_modules/jquery/src/ajax/parseJSON.js",
+        "node_modules/jquery/src/ajax/parseXML.js",
+        "node_modules/jquery/src/ajax/script.js",
+        "node_modules/jquery/src/ajax/var/location.js",
+        "node_modules/jquery/src/ajax/var/nonce.js",
+        "node_modules/jquery/src/ajax/var/rquery.js",
+        "node_modules/jquery/src/ajax/xhr.js",
+        "node_modules/jquery/src/ajax.js",
+        "node_modules/jquery/src/attributes/attr.js",
+        "node_modules/jquery/src/attributes/classes.js",
+        "node_modules/jquery/src/attributes/prop.js",
+        "node_modules/jquery/src/attributes/support.js",
+        "node_modules/jquery/src/attributes/val.js",
+        "node_modules/jquery/src/attributes.js",
+        "node_modules/jquery/src/callbacks.js",
+        "node_modules/jquery/src/core/DOMEval.js",
+        "node_modules/jquery/src/core/access.js",
+        "node_modules/jquery/src/core/init.js",
+        "node_modules/jquery/src/core/parseHTML.js",
+        "node_modules/jquery/src/core/ready.js",
+        "node_modules/jquery/src/core/support.js",
+        "node_modules/jquery/src/core/var/rsingleTag.js",
+        "node_modules/jquery/src/core.js",
+        "node_modules/jquery/src/css/addGetHookIf.js",
+        "node_modules/jquery/src/css/adjustCSS.js",
+        "node_modules/jquery/src/css/curCSS.js",
+        "node_modules/jquery/src/css/defaultDisplay.js",
+        "node_modules/jquery/src/css/hiddenVisibleSelectors.js",
+        "node_modules/jquery/src/css/showHide.js",
+        "node_modules/jquery/src/css/support.js",
+        "node_modules/jquery/src/css/var/cssExpand.js",
+        "node_modules/jquery/src/css/var/getStyles.js",
+        "node_modules/jquery/src/css/var/isHidden.js",
+        "node_modules/jquery/src/css/var/rmargin.js",
+        "node_modules/jquery/src/css/var/rnumnonpx.js",
+        "node_modules/jquery/src/css/var/swap.js",
+        "node_modules/jquery/src/css.js",
+        "node_modules/jquery/src/data/Data.js",
+        "node_modules/jquery/src/data/accepts.js",
+        "node_modules/jquery/src/data/support.js",
+        "node_modules/jquery/src/data/var/acceptData.js",
+        "node_modules/jquery/src/data/var/dataPriv.js",
+        "node_modules/jquery/src/data/var/dataUser.js",
+        "node_modules/jquery/src/data.js",
+        "node_modules/jquery/src/deferred/exceptionHook.js",
+        "node_modules/jquery/src/deferred.js",
+        "node_modules/jquery/src/deprecated.js",
+        "node_modules/jquery/src/dimensions.js",
+        "node_modules/jquery/src/effects/Tween.js",
+        "node_modules/jquery/src/effects/animatedSelector.js",
+        "node_modules/jquery/src/effects/support.js",
+        "node_modules/jquery/src/effects.js",
+        "node_modules/jquery/src/event/ajax.js",
+        "node_modules/jquery/src/event/alias.js",
+        "node_modules/jquery/src/event/focusin.js",
+        "node_modules/jquery/src/event/support.js",
+        "node_modules/jquery/src/event/trigger.js",
+        "node_modules/jquery/src/event.js",
+        "node_modules/jquery/src/exports/amd.js",
+        "node_modules/jquery/src/exports/global.js",
+        "node_modules/jquery/src/intro.js",
+        "node_modules/jquery/src/jquery.js",
+        "node_modules/jquery/src/manipulation/_evalUrl.js",
+        "node_modules/jquery/src/manipulation/buildFragment.js",
+        "node_modules/jquery/src/manipulation/createSafeFragment.js",
+        "node_modules/jquery/src/manipulation/getAll.js",
+        "node_modules/jquery/src/manipulation/setGlobalEval.js",
+        "node_modules/jquery/src/manipulation/support.js",
+        "node_modules/jquery/src/manipulation/var/nodeNames.js",
+        "node_modules/jquery/src/manipulation/var/rcheckableType.js",
+        "node_modules/jquery/src/manipulation/var/rleadingWhitespace.js",
+        "node_modules/jquery/src/manipulation/var/rscriptType.js",
+        "node_modules/jquery/src/manipulation/var/rtagName.js",
+        "node_modules/jquery/src/manipulation/wrapMap.js",
+        "node_modules/jquery/src/manipulation.js",
+        "node_modules/jquery/src/offset.js",
+        "node_modules/jquery/src/outro.js",
+        "node_modules/jquery/src/queue/delay.js",
+        "node_modules/jquery/src/queue.js",
+        "node_modules/jquery/src/selector-native.js",
+        "node_modules/jquery/src/selector-sizzle.js",
+        "node_modules/jquery/src/selector.js",
+        "node_modules/jquery/src/serialize.js",
+        "node_modules/jquery/src/support.js",
+        "node_modules/jquery/src/traversing/findFilter.js",
+        "node_modules/jquery/src/traversing/var/dir.js",
+        "node_modules/jquery/src/traversing/var/rneedsContext.js",
+        "node_modules/jquery/src/traversing/var/siblings.js",
+        "node_modules/jquery/src/traversing.js",
+        "node_modules/jquery/src/var/arr.js",
+        "node_modules/jquery/src/var/class2type.js",
+        "node_modules/jquery/src/var/concat.js",
+        "node_modules/jquery/src/var/deletedIds.js",
+        "node_modules/jquery/src/var/document.js",
+        "node_modules/jquery/src/var/documentElement.js",
+        "node_modules/jquery/src/var/hasOwn.js",
+        "node_modules/jquery/src/var/indexOf.js",
+        "node_modules/jquery/src/var/pnum.js",
+        "node_modules/jquery/src/var/push.js",
+        "node_modules/jquery/src/var/rcssNum.js",
+        "node_modules/jquery/src/var/rnotwhite.js",
+        "node_modules/jquery/src/var/slice.js",
+        "node_modules/jquery/src/var/support.js",
+        "node_modules/jquery/src/var/toString.js",
+        "node_modules/jquery/src/wrap.js"
+      ]
+    },
+    "folders": [
+      {
+        "paths": [
+          "lib",
+          "",
+          "spec"
+        ],
+        "dependencies": {
+          "jquery": "^2.1.4"
+        }
+      }
+    ]
+  }
 }
