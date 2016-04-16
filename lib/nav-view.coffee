@@ -227,12 +227,12 @@ class NavView extends ResizableWidthView
         continue if prevItems.indexOf(dupKey) >= 0
         prevItems.push(dupKey)
         arrangedItems.push item
-      # count duplicate entries
+      # get sister items
       for arrangedItem in arrangedItems
-        arrangedItem.count = 0
+        arrangedItem.sisterItems = [];
         for item in items
           if item.kind == arrangedItem.kind && item.label == arrangedItem.label
-            arrangedItem.count++
+            arrangedItem.sisterItems.push(item)
     else
       arrangedItems = items.slice(0)
     if @state[file] && @state[file].sort != undefined
@@ -314,7 +314,7 @@ class NavView extends ResizableWidthView
       groupLabel = data.kind
       label = data.label
       # get count if available
-      count = data.count
+      count = data.sisterItems.length
     else
       data ||= {}
 
