@@ -227,6 +227,12 @@ class NavView extends ResizableWidthView
         continue if prevItems.indexOf(dupKey) >= 0
         prevItems.push(dupKey)
         arrangedItems.push item
+      # count duplicate entries
+      for arrangedItem in arrangedItems
+        arrangedItem.count = 0
+        for item in items
+          if item.kind == arrangedItem.kind && item.label == arrangedItem.label
+            arrangedItem.count++
     else
       arrangedItems = items.slice(0)
     if @state[file] && @state[file].sort != undefined
@@ -307,6 +313,8 @@ class NavView extends ResizableWidthView
       data = groupLabel
       groupLabel = data.kind
       label = data.label
+      # get count if available
+      count = data.count
     else
       data ||= {}
 
@@ -322,7 +330,7 @@ class NavView extends ResizableWidthView
     html = """
     <li id='zi-item-#{@nextId}' class='list-item' title='#{tooltip || ''}'>
       <span #{labelClass}></span>
-      <span class='zi-marker-label'>#{label}</span>
+      <span class='zi-marker-label'>#{label} (#{count})</span>
     </li>
     """
     elem = $(html).appendTo(group)
