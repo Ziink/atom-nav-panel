@@ -1,5 +1,5 @@
 # Created by ctags2coffee.coffee by processing .ctags
-langdef = 
+langdef =
   All: [
     {re: /#nav-mark:(.*)/i, id: '%1', kind: 'Markers'}
     {re: /#todo:(.*)/i, id: '%1', kind: 'Todo'}
@@ -39,7 +39,10 @@ langdef =
     {re: /^[ \t]*<([a-zA-Z]+)[ \t]*.*>/, id: '%1', kind: 'Function'}
   ]
   Markdown: [
-    {re: /^#+[ \t]*([^#]+)/, id: '%1', kind: 'Function'}
+    {re: /^####+[ \t]*([^#]+)/, id: '___# %1', kind: 'Contents'}
+    {re: /^###[ \t]*([^#]+)/, id: '__#%1', kind: 'Contents'}
+    {re: /^##[ \t]*([^#]+)/, id: '_# %1', kind: 'Contents'}
+    {re: /^#[ \t]*([^#]+)/, id: '# %1', kind: 'Contents'}
   ]
   Json: [
     {re: /^[ \t]*"([^"]+)"[ \t]*\:/, id: '%1', kind: 'Field'}
@@ -120,7 +123,7 @@ langdef =
     {re: /^[ \t]*(function|macro|abstract|type|typealias|immutable)[ \t]+([^ \t({[]+).*$/, id: '%2', kind: 'Function'}
     {re: /^[ \t]*(([^@#$ \t({[]+)|\(([^@#$ \t({[]+)\)|\((\$)\))[ \t]*(\{.*\})?[ \t]*\([^#]*\)[ \t]*=([^=].*$|$)/, id: '%2%3%4', kind: 'Function'}
   ]
-langmap = 
+langmap =
   '.coffee': langdef.CoffeeScript
   '.litcoffee': langdef.CoffeeScript
   '.rb': langdef.Ruby
