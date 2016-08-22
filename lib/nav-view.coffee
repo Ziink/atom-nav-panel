@@ -266,9 +266,9 @@ class NavView extends ResizableWidthView
     editor = atom.workspace.getActiveTextEditor()
     marker = editor.getMarker(markerId)
     return unless marker
-    row = marker.getStartBufferPosition()
-    editor.unfoldBufferRow(row)
-    editor.setCursorBufferPosition(row)
+    position = marker.getStartBufferPosition()
+    editor.unfoldBufferRow(position.row)
+    editor.setCursorBufferPosition(position)
     editor.scrollToCursorPosition()
 
 
