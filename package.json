@@ -1,7 +1,7 @@
 {
-  "name": "nav-panel",
+  "name": "nav-panel-plus",
   "main": "./lib/nav-panel",
-  "version": "0.0.11",
+  "version": "0.1.2",
   "description": "Side panel with automatic, configurable markers for easy navigation with support for persistent bookmarks.",
   "keywords": [
     "anchors",
@@ -18,7 +18,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Ziink/atom-nav-panel"
+    "url": "https://github.com/0tho/atom-nav-panel-plus"
   },
   "engines": {
     "atom": ">=1.2.0 <2.0.0"

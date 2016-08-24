@@ -16,28 +16,23 @@ class NavView extends ResizableWidthView
 
 
   constructor: (state, settings, parser)->
-    super()
+    super(settings.leftPanel)
     @enabled = !(state.enabled == false)
     @state = state.fileStates || {}
     @changeSettings(settings)
     @parser = parser
 
-    # Add to the panel
-    @panel = atom.workspace.addRightPanel(
-      item: @viewContainer
-      visible: false
-      priority: 300
-    )
     @viewContainer.addClass('zi-marker-panel')
     html = """
     <div class='zi-header'>
-      <div class='icon icon-arrow-down' title='Toggle Sorting'></div>
-      <h2>Nav Panel</h2>
+      <div class='icon settings icon-gear'></div>
+      <div class='icon sorter'></div>
     </div>
     <div class='zi-view'>
     </div>
     """
     $(html).appendTo(@mainView)
+
     @view = @mainView.find('.zi-view')
     @view.on 'click', '.list-item', (event)=>
       elem = event.currentTarget
@@ -48,15 +43,25 @@ class NavView extends ResizableWidthView
           @gotoMarker(elem.markerId)
       else if $(elem).is('.zi-marker-group-label')
         $(elem).parent().toggleClass('collapsed')
-    @mainView.on 'click', '.icon-arrow-down', =>
+    @mainView.on 'click', '.sorter', =>
       editor = atom.workspace.getActiveTextEditor()
       return unless editor
       file = editor.getPath()
       @state[file] ||= {}
       if @state[file].sort == undefined
-        @state[file].sort = @settings.sort
+        @state[file].sort = true
       else
         @state[file].sort = !@state[file].sort
+      # Setup sorter icon and title
+      sorter = @mainView.find('.sorter')
+      if @state[file].sort
+        sorter.addClass('icon-arrow-down')
+        sorter.removeClass('icon-arrow-right')
+        sorter.prop('title', 'Order: sorted')
+      else
+        sorter.addClass('icon-arrow-right')
+        sorter.removeClass('icon-arrow-down')
+        sorter.prop('title', 'Order: as is in file')
       @updateFile(file)
 
 
@@ -66,10 +71,45 @@ class NavView extends ResizableWidthView
       @destroyPanel($(this))
     @panel.destroy()
 
+  movePanel: ->
+    if @settings.leftPanel == 'left'
+      @settings.leftPanel = 'right'
+      @panel.destroy()
+      @panel = atom.workspace.addRightPanel(
+        item: @viewContainer
+        visible: @enabled
+        priority: 300
+      )
+      @moveHandleLeft()
+    else
+      @settings.leftPanel = 'left'
+      @panel.destroy()
+      @panel = atom.workspace.addLeftPanel(
+        item: @viewContainer
+        visible: @enabled
+        priority: 300
+      )
+      @moveHandleRight()
+
+
 
   changeSettings: (settings)->
     @settings = settings
-
+    # Add to the panel
+    if settings.leftPanel == 'left'
+      @panel = atom.workspace.addLeftPanel(
+        item: @viewContainer
+        visible: false
+        priority: 300
+      )
+      @moveHandleRight()
+    else
+      @panel = atom.workspace.addRightPanel(
+        item: @viewContainer
+        visible: false
+        priority: 300
+      )
+      @moveHandleLeft()
 
   getFilePanel: (file)->
     filePanel = null
@@ -96,6 +136,16 @@ class NavView extends ResizableWidthView
     editor = @getFileEditor(file)
     editorView = atom.views.getView(editor)
     gutter = $('.gutter-container', editorView.shadowRoot)
+    # Setup sorter icon and title
+    sorter = @mainView.find('.sorter')
+    if @state[file].sort
+      sorter.addClass('icon-arrow-down')
+      sorter.removeClass('icon-arrow-right')
+      sorter.prop('title', 'Order: sorted')
+    else
+      sorter.addClass('icon-arrow-right')
+      sorter.removeClass('icon-arrow-down')
+      sorter.prop('title', 'Order: as is in file')
     if !gutter.data('zNavPanelMouse')
       gutter.data('zNavPanelMouse', 'done')
       do (editor)=>
@@ -266,9 +316,9 @@ class NavView extends ResizableWidthView
     editor = atom.workspace.getActiveTextEditor()
     marker = editor.getMarker(markerId)
     return unless marker
-    row = marker.getStartBufferPosition()
-    editor.unfoldBufferRow(row)
-    editor.setCursorBufferPosition(row)
+    position = marker.getStartBufferPosition()
+    editor.unfoldBufferRow(position.row)
+    editor.setCursorBufferPosition(position)
     editor.scrollToCursorPosition()
 
 
@@ -314,7 +364,7 @@ class NavView extends ResizableWidthView
     if data.icon
       labelClass = "class='icon icon-#{data.icon}'"
     else
-      labelClass = "class='icon icon-primitive-dot'"
+      labelClass = "class='icon icon-eye'"
     # Interim : Fix with a better approach
     tooltip = data.tooltip
     if !tooltip && label.length > 28

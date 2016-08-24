@@ -10,16 +10,11 @@ class ResizableWidthView
 
   constructor: (resizerPos = 'left')->
     @resizerPos = resizerPos
-    if resizerPos == 'left'
-      fragment = """
-      <div class="zi-width-resizer"></div>
-      <div class="zi-mainview"></div>
-      """
-    else
-      fragment = """
-      <div class="zi-mainview"></div>
-      <div class="zi-width-resizer"></div>
-      """
+
+    fragment = """
+    <div class="zi-width-resizer right"></div>
+    <div class="zi-mainview"></div>
+    """
 
     html = """
     <div class="zi-resizable">
@@ -53,12 +48,22 @@ class ResizableWidthView
     return @resizeStopped() unless which is 1
 
     if @resizerPos == 'left'
-      deltaX = @viewContainer.offset().left - pageX
+      deltaX = @handle.offset().left - pageX
       width = @viewContainer.width() + deltaX
     else
-      width = pageX - @viewContainer.offset().left
+      deltaX =  pageX - @handle.offset().left
+      width = @viewContainer.width() + deltaX
     @viewContainer.width(width)
-
 
   resizeToFitContent: ->
     @viewContainer.width(@mainView.width() + 20)
+
+  moveHandleLeft: ->
+    @handle.addClass('left')
+    @handle.removeClass('right')
+    @resizerPos = 'left'
+
+  moveHandleRight: ->
+    @handle.addClass('right')
+    @handle.removeClass('left')
+    @resizerPos = 'right'

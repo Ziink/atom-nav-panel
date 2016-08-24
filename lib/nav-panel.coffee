@@ -28,34 +28,39 @@ module.exports =
       description: 'Groups that are displayed at the top, irrespective of sorting'
       type: 'string'
       default: 'Bookmarks, Todo'
-    sort:
-      title: 'Sort Alphabetically'
-      type: 'boolean'
-      default: true
     noDups:
       title: 'No Duplicates'
       type: 'boolean'
       default: true
+    leftPanel:
+      title: 'Should panel be on the left'
+      type: 'boolean'
+      default: false
 
 
   activate: (state) ->
     @enabled = !(state.enabled == false)
     @subscriptions = new CompositeDisposable
 
-    settings = atom.config.getAll('nav-panel')[0].value
+    settings = atom.config.getAll('nav-panel-plus')[0].value
+    settings.leftPanel = if settings.leftPanel then 'left' else 'right'
 
     @parser = new Parser()
     @navView = new NavView(state, settings, @parser)
 
-    @subscriptions.add atom.config.onDidChange 'nav-panel', (event) =>
+    @subscriptions.add atom.config.onDidChange 'nav-panel-plus', (event) =>
       settings = event.newValue
       for key, value in settings
         if key.indexOf('Groups') > 0
           settings[key] = value.split(',')
+      settings.leftPanel = if settings.leftPanel then 'left' else 'right'
       @navView.changeSettings(settings)
 
     @subscriptions.add atom.commands.add 'atom-workspace'
-      , 'nav-panel:toggle': => @toggle()
+      , 'nav-panel-plus:toggle': => @toggle()
+
+    @subscriptions.add atom.commands.add 'atom-workspace'
+      , 'nav-panel-plus:changeSide': => @changePanelSide()
 
     @subscriptions.add atom.workspace.onDidStopChangingActivePaneItem (paneItem)=>
       editor = atom.workspace.getActiveTextEditor()
@@ -100,3 +105,6 @@ module.exports =
   toggle: ->
     @enabled = not @enabled
     @navView.enable(@enabled)
+
+  changePanelSide: ->
+    @navView.movePanel()
