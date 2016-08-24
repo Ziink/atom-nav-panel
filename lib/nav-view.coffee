@@ -63,6 +63,7 @@ class NavView extends ResizableWidthView
   movePanel: ->
     if @settings.leftPanel == 'left'
       @settings.leftPanel = 'right'
+      @panel.destroy()
       @panel = atom.workspace.addRightPanel(
         item: @viewContainer
         visible: @enabled
@@ -71,6 +72,7 @@ class NavView extends ResizableWidthView
       @moveHandleLeft()
     else
       @settings.leftPanel = 'left'
+      @panel.destroy()
       @panel = atom.workspace.addLeftPanel(
         item: @viewContainer
         visible: @enabled
