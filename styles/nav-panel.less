@@ -10,27 +10,39 @@
   max-width: 800px;
 	height: 100%;
   white-space: nowrap;
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 .zi-marker-panel .list-item {
 	padding: 5px 10px;
 	font-size: 14px;
 	cursor: pointer;
 }
+.zi-marker-panel .list-tree.has-collapsable-children li.list-item {
+	margin-left: 0;
+	padding-left: 15px;
+}
+.zi-marker-panel .list-item:not(.zi-highlight) .icon {
+	background: linear-gradient(45deg, transparent 9px, #808080 9px, #808080 10px, transparent 10px);
+}
 .zi-marker-panel .list-item .icon:before {
-  font-size: 10px;
-  width: 6px;
+  font-size: 14px;
+  width: 10px;
 }
-.zi-marker-panel .list-item .icon:hover:before {
+.zi-marker-panel .list-item .icon:hover {
   color: orange;
-  text-shadow: 0px 0px 8px red;
+	background: none;
+  // text-shadow: 0px 0px 8px red;
 }
-.zi-marker-panel .list-item.zi-highlight .icon:hover:before {
-  color: black;
-  text-shadow: 0px 0px 8px gray;
+.zi-marker-panel .list-item.zi-highlight .icon:hover {
+  color: gray;
+	background: linear-gradient(45deg, transparent 9px, #808080 9px, #808080 10px, transparent 10px);
+  // text-shadow: 0px 0px 8px white;
 }
 .zi-marker-panel .list-item:hover {
 	background-color: @background-color-highlight
+}
+.zi-marker-group-label {
+	border-bottom: 1px solid grey;
 }
 .zi-marker-group-label>span {
 	font-size: 14px;
@@ -66,15 +78,14 @@ atom-text-editor::shadow div.line-number.zi-highlight {
 .zi-header>h2 {
   margin-left: 10px;
 }
-.zi-header>.icon {
+.zi-header>.sorter {
   float: right;
   width: 18px;
   padding-left: 2px;
   border: gray solid 2px;
-  border-width: 1px 2px 3px 2px;
   position: relative;
-  top: -4px;
-  margin-right: 4px;
+  right: 10px;
+	cursor: pointer;
 }
 .zi-header>.icon.toggled {
   border-width: 3px 2px 1px 2px;

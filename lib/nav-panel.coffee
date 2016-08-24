@@ -28,10 +28,6 @@ module.exports =
       description: 'Groups that are displayed at the top, irrespective of sorting'
       type: 'string'
       default: 'Bookmarks, Todo'
-    sort:
-      title: 'Sort Alphabetically'
-      type: 'boolean'
-      default: true
     noDups:
       title: 'No Duplicates'
       type: 'boolean'
