@@ -36,6 +36,10 @@ module.exports =
       title: 'No Duplicates'
       type: 'boolean'
       default: true
+    leftPanel:
+      title: 'Should panel be on the left'
+      type: 'boolean'
+      default: false
 
 
   activate: (state) ->
@@ -43,6 +47,7 @@ module.exports =
     @subscriptions = new CompositeDisposable
 
     settings = atom.config.getAll('nav-panel')[0].value
+    settings.leftPanel = if settings.leftPanel then 'left' else 'right'
 
     @parser = new Parser()
     @navView = new NavView(state, settings, @parser)
@@ -52,6 +57,7 @@ module.exports =
       for key, value in settings
         if key.indexOf('Groups') > 0
           settings[key] = value.split(',')
+      settings.leftPanel = if settings.leftPanel then 'left' else 'right'
       @navView.changeSettings(settings)
 
     @subscriptions.add atom.commands.add 'atom-workspace'

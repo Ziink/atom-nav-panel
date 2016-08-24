@@ -16,18 +16,12 @@ class NavView extends ResizableWidthView
 
 
   constructor: (state, settings, parser)->
-    super()
+    super(settings.leftPanel)
     @enabled = !(state.enabled == false)
     @state = state.fileStates || {}
     @changeSettings(settings)
     @parser = parser
 
-    # Add to the panel
-    @panel = atom.workspace.addRightPanel(
-      item: @viewContainer
-      visible: false
-      priority: 300
-    )
     @viewContainer.addClass('zi-marker-panel')
     html = """
     <div class='zi-header'>
@@ -69,7 +63,21 @@ class NavView extends ResizableWidthView
 
   changeSettings: (settings)->
     @settings = settings
-
+    # Add to the panel
+    if settings.leftPanel == 'left'
+      @panel = atom.workspace.addLeftPanel(
+        item: @viewContainer
+        visible: false
+        priority: 300
+      )
+      @moveHandleRight()
+    else
+      @panel = atom.workspace.addRightPanel(
+        item: @viewContainer
+        visible: false
+        priority: 300
+      )
+      @moveHandleLeft()
 
   getFilePanel: (file)->
     filePanel = null
