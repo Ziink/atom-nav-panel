@@ -46,13 +46,13 @@ module.exports =
     @enabled = !(state.enabled == false)
     @subscriptions = new CompositeDisposable
 
-    settings = atom.config.getAll('nav-panel')[0].value
+    settings = atom.config.getAll('nav-panel-plus')[0].value
     settings.leftPanel = if settings.leftPanel then 'left' else 'right'
 
     @parser = new Parser()
     @navView = new NavView(state, settings, @parser)
 
-    @subscriptions.add atom.config.onDidChange 'nav-panel', (event) =>
+    @subscriptions.add atom.config.onDidChange 'nav-panel-plus', (event) =>
       settings = event.newValue
       for key, value in settings
         if key.indexOf('Groups') > 0
@@ -61,7 +61,10 @@ module.exports =
       @navView.changeSettings(settings)
 
     @subscriptions.add atom.commands.add 'atom-workspace'
-      , 'nav-panel:toggle': => @toggle()
+      , 'nav-panel-plus:toggle': => @toggle()
+
+    @subscriptions.add atom.commands.add 'atom-workspace'
+      , 'nav-panel-plus:changeSide': => @changePanelSide()
 
     @subscriptions.add atom.workspace.onDidStopChangingActivePaneItem (paneItem)=>
       editor = atom.workspace.getActiveTextEditor()
@@ -106,3 +109,6 @@ module.exports =
   toggle: ->
     @enabled = not @enabled
     @navView.enable(@enabled)
+
+  changePanelSide: ->
+    @navView.movePanel()

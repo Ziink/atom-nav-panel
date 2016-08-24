@@ -60,6 +60,25 @@ class NavView extends ResizableWidthView
       @destroyPanel($(this))
     @panel.destroy()
 
+  movePanel: ->
+    if @settings.leftPanel == 'left'
+      @settings.leftPanel = 'right'
+      @panel = atom.workspace.addRightPanel(
+        item: @viewContainer
+        visible: @enabled
+        priority: 300
+      )
+      @moveHandleLeft()
+    else
+      @settings.leftPanel = 'left'
+      @panel = atom.workspace.addLeftPanel(
+        item: @viewContainer
+        visible: @enabled
+        priority: 300
+      )
+      @moveHandleRight()
+
+
 
   changeSettings: (settings)->
     @settings = settings
