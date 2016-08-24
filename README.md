@@ -1,3 +1,6 @@
+# Original package
+This package is a fork from Ziink/atom-nav-panel
+
 # Navigation Panel
 
 Navigate using bookmarks and symbols. Whenever you open a file, it is scanned
