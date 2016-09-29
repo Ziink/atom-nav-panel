@@ -267,7 +267,10 @@ class NavView extends ResizableWidthView
     marker = editor.getMarker(markerId)
     return unless marker
     row = marker.getStartBufferPosition()
-    editor.unfoldBufferRow(row)
+    # See https://discuss.atom.io/t/how-to-toggle-current-fold-in-editor-view/11094/5
+    brow = editor.bufferPositionForScreenPosition(editor.getCursorScreenPosition()).row
+    if editor.isFoldedAtBufferRow(brow)
+      editor.unfoldBufferRow(brow)
     editor.setCursorBufferPosition(row)
     editor.scrollToCursorPosition()
 
